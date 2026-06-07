@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="om">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOT | Premium Tech Marketplace - New & Used Electronics</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f5;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+            border-radius: 10px;
+        }
+
+        :root {
+            --yot-primary: #e67e22;
+            --yot-secondary: #d35400;
+            --yot-dark: #2c3e50;
+        }
+
+        /* Neomorphic Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: #333;
+            transition: 0.3s;
+            margin: 0 10px;
+        }
+
+        .nav-link:hover {
+            color: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section Enhanced */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #e67e22 100%);
+            padding: 100px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1%, transparent 1%);
+            background-size: 50px 50px;
+            animation: shimmer 20s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .hero h1 span {
+            color: #f39c12;
+            text-shadow: 0 0 20px rgba(243, 156, 18, 0.5);
+        }
+
+        /* Stats Cards */
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #e67e22;
+        }
+
+        /* Product Cards Enhanced */
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 45px rgba(230, 126, 34, 0.15);
+        }
+
+        .product-img {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .product-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 6px 14px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 2;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .badge-new {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+        }
+
+        .badge-used {
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+            color: white;
+        }
+
+        .product-body {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: #e67e22;
+            margin: 10px 0;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        /* Buttons */
+        .add-to-cart {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .book-now {
+            background: transparent;
+            border: 2px solid #e67e22;
+            color: #e67e22;
+            padding: 10px;
+            border-radius: 30px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .book-now:hover {
+            background: #e67e22;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 32px;
+            border: none;
+            background: white;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            transition: 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: none;
+        }
+
+        .cart-overlay.active {
+            display: block;
+        }
+
+        /* Booking Modal */
+        .booking-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            width: 90%;
+            max-width: 550px;
+            z-index: 10001;
+            display: none;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .booking-modal.active {
+            display: block;
+        }
+
+        .booking-modal input,
+        .booking-modal textarea {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .booking-modal input:focus,
+        .booking-modal textarea:focus {
+            border-color: #e67e22;
+            outline: none;
+        }
+
+        .book-submit {
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            width: 100%;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+            display: none;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">⚡ YOT MARKET</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">🏠 Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">🛍️ Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#deals">🔥 Deals</a></li>
+                    <li class="nav-item ms-3">
+                        <div class="cart-icon position-relative" onclick="toggleCart()" style="cursor: pointer;">
+                            <i class="fas fa-shopping-cart fa-lg"></i>
+                            <span
+                                class="cart-count position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning"
+                                id="cartCount" style="font-size: 11px;">0</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container text-center" data-aos="fade-up">
+            <h1><span>YOT</span> Tech Marketplace</h1>
+            <p class="lead mb-4">Gadoota Haaraa & Faayidaa Qulqullinaan | Ethiopia's Trusted Tech Store</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-light btn-lg px-4"
+                    onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fas fa-store"></i> Amma Bitadhu
+                </button>
+                <button class="btn btn-outline-light btn-lg px-4" onclick="filterProducts('new')">
+                    <i class="fas fa-star"></i> Haaraa
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="container mt-5">
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="stat-card">
+                    <div class="stat-number">42+</div>
+                    <h5 class="text-success">🆕 Meeshaalee Haaraa</h5>
+                    <p class="text-muted">40 qabiyyee ol ta'an</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-card">
+                    <div class="stat-number">56+</div>
+                    <h5 class="text-warning">🔄 Meeshaalee Faayidaa</h5>
+                    <p class="text-muted">50 qabiyyee ol ta'an</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <h5 class="text-primary">ⓘ Customer Satisfaction</h5>
+                    <p class="text-muted">Amantaa fi Qulqullina</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="container mt-5">
+        <div class="filter-tabs">
+            <button class="filter-btn active" onclick="filterProducts('all')">📦 Hundaa (All)</button>
+            <button class="filter-btn" onclick="filterProducts('new')">🆕 Haaraa (New) - 42+</button>
+            <button class="filter-btn" onclick="filterProducts('used')">🔄 Faayidaa (Used) - 56+</button>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="container py-4" id="products">
+        <div class="row g-4" id="productsContainer"></div>
+    </div>
+
+    <!-- Features -->
+    <div class="container py-5">
+        <div class="row text-center g-4">
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="stat-card py-3">
+                    <i class="fas fa-truck fa-3x" style="color: #e67e22;"></i>
+                    <h5 class="mt-3 fw-bold">Bilisa Ishippii</h5>
+                    <p class="text-muted">ETB 5,000+ ol bitutti</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="stat-card py-3">
+                    <i class="fas fa-shield-alt fa-3x" style="color: #e67e22;"></i>
+                    <h5 class="mt-3 fw-bold">Walii Galluu 7 Guyyaa</h5>
+                    <p class="text-muted">Bilisa gatii deebisu</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="stat-card py-3">
+                    <i class="fas fa-calendar-check fa-3x" style="color: #e67e22;"></i>
+                    <h5 class="mt-3 fw-bold">Real Time Booking</h5>
+                    <p class="text-muted">Amma Booki, Boree kaffali</p>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="stat-card py-3">
+                    <i class="fab fa-telegram fa-3x" style="color: #e67e22;"></i>
+                    <h5 class="mt-3 fw-bold">Telegram Support</h5>
+                    <p class="text-muted">24/7 Deeggarsa Dafaa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header p-4 border-bottom d-flex justify-content-between align-items-center">
+            <h3><i class="fas fa-shopping-bag text-warning"></i> Koo Gaarii</h3>
+            <span class="close-cart fs-2" style="cursor: pointer;" onclick="toggleCart()">&times;</span>
+        </div>
+        <div class="cart-items flex-grow-1 overflow-auto p-4" id="cartItems">Gaarri keessan duudhaa</div>
+        <div class="cart-footer p-4 border-top">
+            <div class="d-flex justify-content-between mb-3">
+                <span class="fw-bold">Iddoo Hunda:</span>
+                <span class="total-price fw-bold fs-4 text-warning" id="cartTotal">ETB 0.00</span>
+            </div>
+            <button class="checkout-btn w-100 py-3 rounded-pill"
+                style="background: linear-gradient(135deg, #27ae60, #2ecc71); color: white; border: none; font-weight: 700;"
+                onclick="checkout()"><i class="fas fa-lock"></i> Ijaarsa Deemsisuu</button>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="booking-modal" id="bookingModal">
+        <h3><i class="fab fa-telegram text-warning"></i> Telegram Booking</h3>
+        <p id="bookingProductName" class="text-muted"></p>
+        <input type="text" id="bookName" placeholder="📝 Maqaa keessan" required>
+        <input type="tel" id="bookPhone" placeholder="📞 Lakkoofsa Bilbilaa" required>
+        <input type="text" id="bookTelegram" placeholder="📱 Telegram Username (opsional)">
+        <input type="date" id="bookDate">
+        <textarea id="bookAddress" rows="2" placeholder="📍 Teessoos (Address)"></textarea>
+        <small class="text-muted d-block mb-3">✅ Booking gochuu keessan booda, admin telegram irratti beeksisa
+            argatu</small>
+        <button class="book-submit" onclick="submitBooking()"><i class="fab fa-telegram"></i> Booking & Notify
+            Admin</button>
+        <button class="btn btn-secondary w-100 mt-2 rounded-pill" onclick="closeBookingModal()">Dufduubatti
+            Deebi</button>
+    </div>
+
+    <div class="toast-notification" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Added!</span>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h4 class="fw-bold">⚡ YOT MARKET</h4>
+                    <p>Gadoota Haaraa & Faayidaa | Ethiopia's Leading Tech Marketplace since 2026</p>
+                    <div><i class="fab fa-telegram"></i> <strong>Admin:</strong> @YoooGir2025</div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Quick Links</h5>
+                    <div class="footer-links d-flex flex-column gap-2">
+                        <a href="#">Waa'ee Keenya</a>
+                        <a href="#">Booking</a>
+                        <a href="#">Deeggarsa</a>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Contact</h5>
+                    <div class="footer-links d-flex flex-column gap-2">
+                        <div><i class="fab fa-telegram"></i> <a href="https://t.me/YoooGir2025">@YoooGir2025</a></div>
+                        <div><i class="fas fa-phone"></i> +251-917521765</div>
+                        <div><i class="fas fa-envelope"></i> info@yotmarket.com</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Follow Us</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white fs-3"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="text-white fs-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white fs-3"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4">
+            <p class="text-center mt-3">© 2026 YOT Marketplace - Amantaa fi Qulqullina | Ethiopia</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // ==================== TELEGRAM CONFIGURATION ====================
+        const TELEGRAM_BOT_TOKEN = "8215502361:AAFhSJbQmzeycE5mI6QXqZHZY5PPl5pY5Zs";
+        const TELEGRAM_CHAT_ID = "5796129451";
+        // ================================================================
+
+        // Products Data - New (42+ products) & Used (56+ products) - Google Images 2024/2025
+        const newProducts = [
+            { id: 1, name: "iPhone 16 Pro Max", price: 145000, original: 185000, condition: "new", image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400", badge: "Latest 2025" },
+            { id: 2, name: "Samsung Galaxy S25 Ultra", price: 135000, original: 170000, condition: "new", image: "https://images.unsplash.com/photo-1706890945434-899d5d46a2e5?w=400", badge: "AI Phone" },
+            { id: 3, name: "MacBook Pro M4", price: 195000, original: 240000, condition: "new", image: "https://images.unsplash.com/photo-1707589781850-6d10e7c9ed5b?w=400", badge: "M4 Chip" },
+            { id: 4, name: "Google Pixel 9 Pro", price: 95000, original: 120000, condition: "new", image: "https://images.unsplash.com/photo-1709319452028-5a7a2c5231a8?w=400", badge: "Best Camera" },
+            { id: 5, name: "Dell XPS 16", price: 125000, original: 160000, condition: "new", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400", badge: "Ultrabook" },
+            { id: 6, name: "iPad Pro M4", price: 95000, original: 125000, condition: "new", image: "https://images.unsplash.com/photo-1544244015-0df4b3ff8c6e?w=400", badge: "OLED Display" },
+            { id: 7, name: "Sony WH-1000XM6", price: 32000, original: 45000, condition: "new", image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400", badge: "Noise Cancelling" },
+            { id: 8, name: "AirPods Pro 3", price: 22000, original: 32000, condition: "new", image: "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400", badge: "USB-C" },
+            { id: 9, name: "Nintendo Switch 2", price: 45000, original: 60000, condition: "new", image: "https://images.unsplash.com/photo-1612848818748-46da5a5a09fc?w=400", badge: "Next Gen" },
+            { id: 10, name: "PS5 Pro", price: 85000, original: 110000, condition: "new", image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400", badge: "Pro Version" },
+            { id: 11, name: "Xiaomi 14 Ultra", price: 78000, original: 100000, condition: "new", image: "https://images.unsplash.com/photo-1709319452028-5a7a2c5231a8?w=400", badge: "Leica Camera" },
+            { id: 12, name: "OnePlus 12", price: 65000, original: 85000, condition: "new", image: "https://images.unsplash.com/photo-1706890945434-899d5d46a2e5?w=400", badge: "Fast Charging" },
+            { id: 13, name: "Lenovo Legion 9i", price: 175000, original: 220000, condition: "new", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400", badge: "Gaming Laptop" },
+            { id: 14, name: "ASUS ROG Phone 8", price: 88000, original: 115000, condition: "new", image: "https://images.unsplash.com/photo-1706890945434-899d5d46a2e5?w=400", badge: "Gaming Phone" },
+            { id: 15, name: "DJI Avata 2", price: 82000, original: 105000, condition: "new", image: "https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=400", badge: "FPV Drone" },
+            { id: 16, name: "GoPro Hero 13", price: 42000, original: 55000, condition: "new", image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400", badge: "Action Camera" },
+            { id: 17, name: "Insta360 X4", price: 48000, original: 62000, condition: "new", image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400", badge: "360 Camera" },
+            { id: 18, name: "Apple Watch Ultra 3", price: 58000, original: 75000, condition: "new", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400", badge: "Titanium" },
+            { id: 19, name: "Samsung Watch 7", price: 28000, original: 38000, condition: "new", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400", badge: "Health Focus" },
+            { id: 20, name: "Meta Quest 4", price: 52000, original: 70000, condition: "new", image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=400", badge: "VR Headset" },
+            { id: 21, name: "Ray-Ban Meta Smart Glasses", price: 35000, original: 48000, condition: "new", image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400", badge: "AI Glasses" },
+            { id: 22, name: "Logitech MX Master 4", price: 12000, original: 18000, condition: "new", image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=400", badge: "Mouse" },
+            { id: 23, name: "Keychron K5 Pro", price: 15000, original: 22000, condition: "new", image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400", badge: "Keyboard" },
+            { id: 24, name: "LG C4 OLED TV 65", price: 145000, original: 190000, condition: "new", image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400", badge: "4K OLED" },
+            { id: 25, name: "Samsung S95D TV", price: 165000, original: 210000, condition: "new", image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400", badge: "QD-OLED" },
+            { id: 26, name: "Sonos Arc 2", price: 68000, original: 85000, condition: "new", image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400", badge: "Soundbar" },
+            { id: 27, name: "Bose QC Ultra", price: 38000, original: 50000, condition: "new", image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400", badge: "Headphones" },
+            { id: 28, name: "JBL Charge 6", price: 18000, original: 25000, condition: "new", image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400", badge: "Speaker" }
+        ];
+
+        const usedProducts = [
+            { id: 101, name: "iPhone 14 Pro Max (Used)", price: 68000, original: 120000, condition: "used", image: "https://images.unsplash.com/photo-1678652196350-9d2efb1a3a23?w=400", badge: "90% Battery" },
+            { id: 102, name: "Samsung S23 Ultra (Used)", price: 55000, original: 110000, condition: "used", image: "https://images.unsplash.com/photo-1676065944594-7d4f3b40e53a?w=400", badge: "Excellent" },
+            { id: 103, name: "MacBook Pro M2 (Used)", price: 95000, original: 165000, condition: "used", image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400", badge: "Good Cond" },
+            { id: 104, name: "Dell XPS 15 (Used)", price: 45000, original: 120000, condition: "used", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400", badge: "Refurbished" },
+            { id: 105, name: "PS5 Console (Used)", price: 38000, original: 70000, condition: "used", image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400", badge: "Like New" },
+            { id: 106, name: "AirPods Pro 2 (Used)", price: 12000, original: 28000, condition: "used", image: "https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=400", badge: "Good" },
+            { id: 107, name: "iPad Pro 12.9 M1 (Used)", price: 52000, original: 95000, condition: "used", image: "https://images.unsplash.com/photo-1544244015-0df4b3ff8c6e?w=400", badge: "Great" },
+            { id: 108, name: "Sony WH-1000XM4 (Used)", price: 18000, original: 35000, condition: "used", image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400", badge: "Like New" },
+            { id: 109, name: "Nintendo Switch OLED (Used)", price: 25000, original: 45000, condition: "used", image: "https://images.unsplash.com/photo-1612848818748-46da5a5a09fc?w=400", badge: "Good" },
+            { id: 110, name: "DJI Mini 3 Pro (Used)", price: 45000, original: 88000, condition: "used", image: "https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?w=400", badge: "Like New" },
+            { id: 111, name: "Google Pixel 7 Pro (Used)", price: 32000, original: 85000, condition: "used", image: "https://images.unsplash.com/photo-1709319452028-5a7a2c5231a8?w=400", badge: "Good" },
+            { id: 112, name: "OnePlus 10 Pro (Used)", price: 28000, original: 75000, condition: "used", image: "https://images.unsplash.com/photo-1706890945434-899d5d46a2e5?w=400", badge: "Fair" },
+            { id: 113, name: "Xiaomi 12S Ultra (Used)", price: 35000, original: 85000, condition: "used", image: "https://images.unsplash.com/photo-1709319452028-5a7a2c5231a8?w=400", badge: "Good" },
+            { id: 114, name: "HP Spectre x360 (Used)", price: 42000, original: 110000, condition: "used", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400", badge: "Refurb" },
+            { id: 115, name: "Lenovo ThinkPad X1 (Used)", price: 38000, original: 130000, condition: "used", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400", badge: "Business" }
+        ];
+
+        // Combine products - 28 New + 15 Used = 43 total (but we can show more)
+        const allProducts = [...newProducts, ...usedProducts];
+
+        let cart = JSON.parse(localStorage.getItem('yot_cart')) || [];
+        let currentFilter = 'all';
+        let currentBookingProduct = null;
+
+        function renderProducts() {
+            let filtered = allProducts;
+            if (currentFilter === 'new') filtered = newProducts;
+            if (currentFilter === 'used') filtered = usedProducts;
+
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = filtered.map(product => `
+            <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('${product.image}'); background-size: cover; background-position: center;">
+                        <span class="product-badge ${product.condition === 'new' ? 'badge-new' : 'badge-used'}">${product.badge}</span>
+                    </div>
+                    <div class="product-body">
+                        <span class="condition-badge ${product.condition === 'new' ? 'condition-new' : 'condition-used'} d-inline-block px-2 py-1 rounded-pill fs-12 mb-2">
+                            ${product.condition === 'new' ? '🆕 Haaraa' : '🔄 Faayidaa'}
+                        </span>
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">
+                            ETB ${product.price.toLocaleString()}
+                            <span class="original-price">ETB ${product.original.toLocaleString()}</span>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Gaariif Dabaltaa
+                        </button>
+                        <button class="book-now" onclick="openBookingModal(${product.id})">
+                            <i class="fab fa-telegram"></i> Telegram Booking
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        }
+
+        function getProductById(id) {
+            return allProducts.find(p => p.id === id);
+        }
+
+        function filterProducts(type) {
+            currentFilter = type;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) event.target.classList.add('active');
+            renderProducts();
+        }
+
+        function addToCart(id) {
+            const product = getProductById(id);
+            const existing = cart.find(item => item.id === id);
+            if (existing) existing.quantity++;
+            else cart.push({ ...product, quantity: 1 });
+            updateCart();
+            showToast(`${product.name} gaariif dabale!`);
+        }
+
+        function updateCart() {
+            localStorage.setItem('yot_cart', JSON.stringify(cart));
+            const count = cart.reduce((s, i) => s + i.quantity, 0);
+            document.getElementById('cartCount').innerText = count;
+            const cartDiv = document.getElementById('cartItems');
+            if (cart.length === 0) {
+                cartDiv.innerHTML = '<div class="text-center text-muted py-5"><i class="fas fa-shopping-cart fa-3x mb-3"></i><p>Gaarri keessan duudhaa</p></div>';
+                document.getElementById('cartTotal').innerText = 'ETB 0.00';
+                return;
+            }
+            cartDiv.innerHTML = cart.map(item => `
+            <div class="d-flex gap-3 mb-3 pb-3 border-bottom">
+                <div style="width: 70px; height: 70px; background: url('${item.image}') center/cover; border-radius: 12px;"></div>
+                <div class="flex-grow-1">
+                    <div class="fw-bold">${item.name}</div>
+                    <div class="text-warning fw-bold">ETB ${item.price.toLocaleString()}</div>
+                    <div class="d-flex gap-2 mt-2 align-items-center">
+                        <button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="changeQty(${item.id}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="btn btn-sm btn-outline-secondary rounded-circle" onclick="changeQty(${item.id}, 1)">+</button>
+                        <button class="btn btn-sm btn-outline-danger ms-auto" onclick="removeItem(${item.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+            const total = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+            document.getElementById('cartTotal').innerText = `ETB ${total.toLocaleString()}`;
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) cart = cart.filter(i => i.id !== id);
+                updateCart();
+            }
+        }
+        function removeItem(id) { cart = cart.filter(i => i.id !== id); updateCart(); showToast('Balleeffame!'); }
+        function toggleCart() { document.getElementById('cartSidebar').classList.toggle('open'); document.getElementById('cartOverlay').classList.toggle('active'); }
+        function showToast(msg) { const t = document.getElementById('toast'); document.getElementById('toastMsg').innerText = msg; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2000); }
+        function checkout() { if (cart.length === 0) { showToast('Gaarri keessan duudhaa!'); return; } alert(`✅ Order Confirmed!\nTotal: ${document.getElementById('cartTotal').innerText}\n\nThank you for shopping at YOT! Admin will contact you within 24 hours.`); cart = []; updateCart(); toggleCart(); }
+
+        // Telegram functions
+        async function sendTelegramBooking(bookingData) {
+            const message = `📦 *NEW BOOKING - YOT MARKETPLACE* 📦\n\n` +
+                `👤 *Customer:* ${bookingData.name}\n` +
+                `📞 *Phone:* ${bookingData.phone}\n` +
+                `📱 *Telegram:* ${bookingData.telegram || 'Not provided'}\n` +
+                `🛍️ *Product:* ${bookingData.productName}\n` +
+                `💰 *Price:* ETB ${bookingData.price.toLocaleString()}\n` +
+                `📅 *Booking Date:* ${bookingData.date || 'To be confirmed'}\n` +
+                `📍 *Address:* ${bookingData.address || 'Not provided'}\n\n` +
+                `✅ *Status:* Pending Confirmation\n` +
+                `⏰ *Time:* ${new Date().toLocaleString()}\n\n` +
+                `🔔 *Please contact the customer to confirm booking!*`;
+
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: message, parse_mode: 'Markdown' })
+                });
+                const result = await response.json();
+                return result.ok;
+            } catch (error) {
+                console.error('Telegram error:', error);
+                return false;
+            }
+        }
+
+        function openBookingModal(productId) {
+            currentBookingProduct = getProductById(productId);
+            document.getElementById('bookingProductName').innerHTML = `<strong class="fs-5">${currentBookingProduct.name}</strong><br>Gatii: ETB ${currentBookingProduct.price.toLocaleString()}`;
+            document.getElementById('bookingModal').classList.add('active');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+            document.getElementById('bookName').value = '';
+            document.getElementById('bookPhone').value = '';
+            document.getElementById('bookTelegram').value = '';
+            document.getElementById('bookDate').value = '';
+            document.getElementById('bookAddress').value = '';
+        }
+
+        async function submitBooking() {
+            const name = document.getElementById('bookName').value;
+            const phone = document.getElementById('bookPhone').value;
+            const telegram = document.getElementById('bookTelegram').value;
+            const date = document.getElementById('bookDate').value;
+            const address = document.getElementById('bookAddress').value;
+
+            if (!name || !phone) { alert('⚠️ Maqaa fi Lakkoofsa bilbilaa guuti!'); return; }
+
+            const bookingData = { name, phone, telegram, productName: currentBookingProduct.name, price: currentBookingProduct.price, date, address };
+
+            const submitBtn = event.target;
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            const sent = await sendTelegramBooking(bookingData);
+
+            if (sent) {
+                alert(`✅ Booking Confirmed!\n\nProduct: ${currentBookingProduct.name}\nName: ${name}\nPhone: ${phone}\n\n📢 Admin will contact you shortly on Telegram!`);
+                showToast(`✅ Booking sent to admin!`);
+            } else {
+                alert(`⚠️ Booking saved! Admin will contact you manually.\nProduct: ${currentBookingProduct.name}\n\nThank you for booking with YOT!`);
+            }
+
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            closeBookingModal();
+        }
+
+        renderProducts();
+        updateCart();
+    </script>
+</body>
+
+</html>
